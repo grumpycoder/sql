@@ -1,20 +1,19 @@
+declare @sourceId int = 8048
+declare @targetId int = 7964
+--8048 => 7964
+select * from Beholder.Chapter where id in (@sourceId, @targetId)
 
-select * from Beholder.Chapter where id in (6621, 1661)
+select * from Beholder.ChapterPersonRel where ChapterId = @sourceId
+--update Beholder.ChapterPersonRel set ChapterId = @targetId where ChapterId = @sourceId
 
---6621 => 1661
+select * from Beholder.ChapterMediaWebsiteEGroupRel where ChapterId = @sourceId
+--update Beholder.ChapterMediaWebsiteEGroupRel set ChapterId = @targetId where ChapterId = @sourceId
 
+select * from Beholder.ChapterMediaCorrespondenceRel where ChapterId = @sourceId
+--update Beholder.ChapterMediaCorrespondenceRel set ChapterId = @targetId where ChapterId = @sourceId
 
-select * from Beholder.ChapterPersonRel where ChapterId = 6621
---update Beholder.ChapterPersonRel set ChapterId = 1661 where ChapterId = 6621
+select * from Beholder.ChapterMediaPublishedRel where ChapterId = @sourceId
+--update Beholder.ChapterMediaPublishedRel set ChapterId = @targetId where ChapterId = @sourceId
 
-select * from Beholder.ChapterMediaWebsiteEGroupRel where ChapterId = 6621
---update Beholder.ChapterMediaWebsiteEGroupRel set ChapterId = 1661 where ChapterId = 6621
-
-select * from Beholder.ChapterMediaCorrespondenceRel where ChapterId = 6621
---update Beholder.ChapterMediaCorrespondenceRel set ChapterId = 1661 where ChapterId = 6621
-
-select * from Beholder.ChapterMediaPublishedRel where ChapterId = 6621
---update Beholder.ChapterMediaPublishedRel set ChapterId = 1661 where ChapterId = 6621
-
-select * from Beholder.ChapterComment where ChapterId = 6621
---update Beholder.ChapterComment set ChapterId = 1661 where ChapterId = 6621
+select * from Beholder.ChapterComment where ChapterId = @sourceId
+--update Beholder.ChapterComment set ChapterId = @targetId where ChapterId = @sourceId
