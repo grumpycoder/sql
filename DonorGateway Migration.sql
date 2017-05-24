@@ -150,6 +150,8 @@ alter table Events alter column Zipcode varchar(25)
 alter table Events alter column CreatedBy varchar(50)
 alter table Events alter column UpdatedBy varchar(50)
 
+sp_rename 'dbo.Events.Name', 'NameUrl', 'COLUMN';
+
 /* SUPPRESSREASONS TABLE */
 alter table SuppressReasons alter column Name varchar(150)
 
