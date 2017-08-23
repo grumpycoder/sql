@@ -1,0 +1,31 @@
+
+
+select
+c.id, c.name, c.CreatedDate 
+from Mailers m 
+join Campaigns c on c.Id = m.CampaignId
+group by c.Id, c.Name, c.CreatedDate
+order by c.id desc 
+
+select count(*) from Mailers 
+where CampaignId <= 17
+
+delete from Mailers 
+where CampaignId <= 17
+
+-- 7242888 Deleted count - 7242888
+-- 15633016 Total cout before delete
+-- 8390128 After delete
+
+/*
+
+April 2016
+April 2016 Multi
+FEB 2016 MAIN
+December 2015
+December 2015 Main
+October 2015
+August 2015
+June 2015
+
+*/

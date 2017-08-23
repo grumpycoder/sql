@@ -1,0 +1,36 @@
+
+
+bcp WorlWideImporters.Warehouse.StockItemTransactions out D:\BCP\StockItemTransactions_character.bcp -c -U<login_id> -S<server_name\instance_name>
+
+
+bcp Mailers out C:\BCP\Mailers.bcp -c -Slocalhost
+
+bcp DonorGateway.dbo.Mailers in c:\BCP\mailers.bcp -c -Usplcdbmanager -Ssplc.database.windows.net -PTzUF4Fjh
+
+bcp DonorGateway.dbo.Mailers in c:\BCP\mailers-data.bcp -c -Usplcdbmanager -Ssplc.database.windows.net -PTzUF4Fjh
+
+bcp "SELECT Id, FirstName, MiddleName, LastName, Suffix, Address, Address2, Address3, City, State, ZipCode, SourceCode, FinderNumber, Suppress, CampaignId, ReasonId, CreatedDate, CreatedBy, UpdatedDate, UpdatedBy FROM (SELECT ROW_NUMBER() OVER (ORDER BY Id) AS RowNum, * FROM DonorGateway.dbo.Mailers) AS RowConstrainedResult WHERE RowNum >= 1 AND RowNum < 20 ORDER BY RowNum" queryout c:\BCP\mailers-data.bcp -c -T -Slocalhost
+
+
+SELECT Id, FirstName, MiddleName, LastName, Suffix, Address, Address2, Address3, City, State, ZipCode, SourceCode, FinderNumber, Suppress, CampaignId, ReasonId, CreatedDate, CreatedBy, UpdatedDate, UpdatedBy FROM ( SELECT    ROW_NUMBER() OVER ( ORDER BY Id ) AS RowNum, * FROM Mailers) AS RowConstrainedResult WHERE RowNum >= 1 AND RowNum < 20 ORDER BY RowNum
+
+bcp DG.dbo.Mailers in c:\BCP\mailers.bcp -c -Usplcdbmanager -Ssplc.database.windows.net -PTzUF4Fjh -b 100
+
+
+bcp DonorGateway.dbo.Constiuents out C:\BCP\Constituents.bcp -c -Slocalhost
+
+bcp "select * from DonorGateway.dbo.Mailers where CampaignId = 35" queryout "c:\BCP\Mailers-35.bcp" -c -T -S "localhost"
+bcp "select * from DonorGateway.dbo.Mailers where CampaignId = 36" queryout "c:\BCP\Mailers-36.bcp" -c -T -S "localhost"
+bcp "select * from DonorGateway.dbo.Mailers where CampaignId = 37" queryout "c:\BCP\Mailers-37.bcp" -c -T -S "localhost"
+
+bcp "select * from DonorGateway.dbo.Mailers where CampaignId = 39" queryout "c:\BCP\Mailers-39.bcp" -c -T -S "localhost"
+bcp "select * from DonorGateway.dbo.Mailers where CampaignId = 40" queryout "c:\BCP\Mailers-40.bcp" -c -T -S "localhost"
+bcp "select * from DonorGateway.dbo.Mailers where CampaignId = 41" queryout "c:\BCP\Mailers-41.bcp" -c -T -S "localhost"
+
+bcp DG.dbo.Mailers in c:\BCP\mailers-35.bcp -c -Usplcdbmanager -Ssplc.database.windows.net -PTzUF4Fjh -b 100
+bcp DG.dbo.Mailers in c:\BCP\mailers-36.bcp -c -Usplcdbmanager -Ssplc.database.windows.net -PTzUF4Fjh -b 100
+bcp DG.dbo.Mailers in c:\BCP\mailers-37.bcp -c -Usplcdbmanager -Ssplc.database.windows.net -PTzUF4Fjh -b 100
+
+bcp DG.dbo.Mailers in c:\BCP\mailers-39.bcp -c -Usplcdbmanager -Ssplc.database.windows.net -PTzUF4Fjh -b 500
+bcp DG.dbo.Mailers in c:\BCP\mailers-40.bcp -c -Usplcdbmanager -Ssplc.database.windows.net -PTzUF4Fjh -b 500
+bcp DG.dbo.Mailers in c:\BCP\mailers-41.bcp -c -Usplcdbmanager -Ssplc.database.windows.net -PTzUF4Fjh -b 500
